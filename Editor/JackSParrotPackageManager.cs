@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.Networking;
@@ -119,6 +119,11 @@ public class JackSParrotPackageManager : EditorWindow
         GUILayout.EndVertical();
     }
 
+    void OnFocus()
+    {
+        Initialize();
+    }
+
     async Task DownloadLatestConfig()
     {
         _status = "Requesting package config to server";
@@ -168,9 +173,6 @@ public class JackSParrotPackageManager : EditorWindow
         {
             await Task.Delay(16);
         }
-        package.Installed = false;
-        _status = string.Empty;
-        _loading = false;
     }
 
     async Task AddPackage(PackageData package)
@@ -182,9 +184,5 @@ public class JackSParrotPackageManager : EditorWindow
         {
             await Task.Delay(16);
         }
-        package.Installed = true;
-        await LoadLocalData();
-        _status = string.Empty;
-        _loading = false;
     }
 }
