@@ -85,7 +85,7 @@ public class JackSParrotPackageManager : EditorWindow
                 }
                 else if (GUILayout.Button("Update", GUILayout.Width(80)))
                 {
-                    _ = UpdatePackage(package);
+                    _ = AddPackage(package);
                 }
 
                 if (GUILayout.Button("Remove", GUILayout.Width(80)))
@@ -156,12 +156,6 @@ public class JackSParrotPackageManager : EditorWindow
         }
         _status = string.Empty;
         _loading = false;
-    }
-
-    async Task UpdatePackage(PackageData package)
-    {
-        await RemovePackage(package);
-        await AddPackage(package);
     }
 
     async Task RemovePackage(PackageData package)
